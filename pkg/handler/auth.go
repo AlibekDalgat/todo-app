@@ -6,7 +6,7 @@ import (
 	"net/http"
 )
 
-func (h *Handler) signIn(c *gin.Context) {
+func (h *Handler) signUp(c *gin.Context) {
 	var input todo.User
 
 	if err := c.BindJSON(&input); err != nil {
@@ -23,6 +23,6 @@ func (h *Handler) signIn(c *gin.Context) {
 	})
 }
 
-func (h *Handler) signUp(c *gin.Context) {
+func (h *Handler) signIn(c *gin.Context) {
 
 }
