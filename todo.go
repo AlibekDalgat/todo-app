@@ -4,7 +4,7 @@ import "errors"
 
 type TodoList struct {
 	Id          int    `json:"id" db:"id"`
-	Title       string `json:"title" db:"title"`
+	Title       string `json:"title" db:"title" binding:"required"`
 	Description string `json:"description" db:"description"`
 }
 
@@ -13,11 +13,11 @@ type UsersList struct {
 	UserId int
 	ListId int
 }
-type ItemId struct {
-	Id          int    `json:"id"`
-	Title       string `json:"title"`
-	Description string `json:"description"`
-	Done        bool   `json:"done"`
+type TodoItem struct {
+	Id          int    `json:"id" db:"id"`
+	Title       string `json:"title" db:"title" binding:"required"`
+	Description string `json:"description" db:"description"`
+	Done        bool   `json:"done" db:"done"`
 }
 
 type ListsItem struct {
@@ -36,4 +36,10 @@ func (input UpdateListInput) Validate() error {
 		return errors.New("update strukturunuki mağnalar yoq")
 	}
 	return nil
+}
+
+type UpdateItemInput struct {
+	Title       *string `json:"title"`
+	Description *string `json:"description"`
+	Done        *string `json:"done"`
 }
