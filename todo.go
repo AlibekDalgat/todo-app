@@ -41,5 +41,12 @@ func (input UpdateListInput) Validate() error {
 type UpdateItemInput struct {
 	Title       *string `json:"title"`
 	Description *string `json:"description"`
-	Done        *string `json:"done"`
+	Done        *bool   `json:"done"`
+}
+
+func (input UpdateItemInput) Validate() error {
+	if input.Title == nil && input.Description == nil && input.Done == nil {
+		return errors.New("update strukturunuki mağnalar yoq")
+	}
+	return nil
 }
